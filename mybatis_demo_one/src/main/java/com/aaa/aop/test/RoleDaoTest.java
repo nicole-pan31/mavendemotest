@@ -12,9 +12,9 @@ import java.util.List;
 
 
 public class RoleDaoTest {
-
     @Test
     public void manyTomany() {
+        System.out.println("测试");
         SqlSession sqlSession =null;
         sqlSession = SqlSessionFactoryUntil.createSqlSession();
         RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
