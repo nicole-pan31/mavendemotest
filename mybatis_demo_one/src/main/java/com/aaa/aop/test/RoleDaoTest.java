@@ -1,6 +1,6 @@
 package com.aaa.aop.test;
 
-import com.aaa.mybatis.Dao.NewsDao;
+
 import com.aaa.mybatis.Dao.RoleDao;
 import com.aaa.mybatis.entity.Power;
 import com.aaa.mybatis.entity.Role;
@@ -10,7 +10,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 
 public class RoleDaoTest {
 
