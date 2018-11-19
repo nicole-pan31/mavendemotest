@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery.min.js"></script>
+</head>
+<script>
+
+        function insert() {
+
+
+
+            var arr = {"empNo": $('#empNo').val(),"ename":$('#ename').val(),
+                "job":$('#job').val(),"salary":$('#salary').val(),
+                "mgr":$('#mgr').val(),"hireDate":$('#hireDate').val(),
+                "comm":$('#comm').val(),"deptNo":$('#deptNo').val()};
+
+
+
+            $.ajax({
+                url: "/sb/emp/add",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data:
+                     JSON.stringify(arr)
+                ,
+               success:function (data) {
+
+                    if(data>0){
+                       location.href = "/sb/emplist.html";
+                    }
+
+                }
+
+
+            })
+        }
+
+
+</script>
+<body>
+<table border="1">
+
+    <thead>
+    <tr>
+        <td>雇员编号：<input id="empNo" name="empNo"/></td>
+        <td>雇员姓名：<input id="ename" name="ename"/></td>
+        <td>职位：<input id="job" name="job"/></td>
+        <td>工资：<input id="salary" name="salary"/></td>
+        <td>领导ID：<input id="mgr" name="mgr"/></td>
+        <td>入职日期：<input id="hireDate" name="hireDate"/></td>
+        <td>奖金：<input id="comm" name="comm"/></td>
+        <td>部门ID：<input id="deptNo" name="deptNo"/></td>
+        <td><input type="button" onclick="insert()" value="添加"/></td>
+    </tr>
+    </thead>
+</table>
+</body>
+</html>

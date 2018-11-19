@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aaa.mybatis.Dao.DeptDao">
+    <!--&lt;!&ndash;select 查询标签 id和接口的方法名称对应 parameterType方法的参数 resultType返回值类型&ndash;&gt;-->
+    <!--<select id="getList" resultType="com.aaa.mybatis.entity.Dept">-->
+        <!--select deptno as deptNO,dname,loc from dept-->
+    <!--</select>-->
+    <!--&lt;!&ndash;部门添加&ndash;&gt;-->
+    <!--&lt;!&ndash;默认返回1或0&ndash;&gt;-->
+    <!--<insert id="add" parameterType="com.aaa.mybatis.entity.Dept">-->
+          <!--&lt;!&ndash;自增使用序列 要先创建序列&ndash;&gt;-->
+        <!--insert into  dept values(seq_dept_id.nextval,#{dname},#{loc})-->
+        <!--&lt;!&ndash;如果不给dname传值 这样写#{dname,jdbcType=VARCHAR} 前题是这一列在数据库可空-->
+        <!--而且 要查数据Java类型与jdbc类型做转换-->
+        <!--&ndash;&gt;-->
+    <!--&lt;!&ndash; insert into  dept values(seq_dept_id.nextval,#{dname,jdbcType=VARCHAR},#{loc})&ndash;&gt;-->
+ <!--</insert>-->
+ <!--&lt;!&ndash;根据部门Id查询&ndash;&gt;-->
+    <!--<select id="getById" parameterType="int" resultType="com.aaa.mybatis.entity.Dept">-->
+        <!--select deptno as deptNO,dname,loc from dept where deptno=#{deptNO}-->
+    <!--</select>-->
+    <!--&lt;!&ndash;更新&ndash;&gt;-->
+    <!--<update id="update" parameterType="com.aaa.mybatis.entity.Dept">-->
+        <!--update dept set dname=#{dname},loc=#{loc} where deptno=#{deptNO}-->
+    <!--</update>-->
+
+    <!--&lt;!&ndash;&gt; 大于符号   &lt; 小于符号&ndash;&gt;-->
+    <!--<delete id="delete" parameterType="int" >-->
+        <!--delete from dept where deptno=#{deptId}-->
+    <!--</delete>-->
+
+    <!--&lt;!&ndash;高级映射一对多&ndash;&gt;-->
+    <!--<select id="oneToMany" resultMap="deptAndEmps">-->
+        <!--select d.deptno,d.dname,d.loc,e.empno,e.ename,e.sal,e.comm,e.job from dept d left join emp e on d.deptno=e.deptno-->
+    <!--</select>-->
+    <!--&lt;!&ndash;一对多的映射的配置&ndash;&gt;-->
+    <!--<resultMap id="deptAndEmps" type="com.aaa.mybatis.entity.Dept">-->
+        <!--&lt;!&ndash;column 数据库里的列名 property 实体的属性名&ndash;&gt;-->
+        <!--<id column="deptno" property="deptNO" javaType="int" jdbcType="INTEGER"></id>-->
+        <!--<result column="dname" property="dname"></result>-->
+        <!--<result column="loc" property="loc"></result>-->
+
+        <!--&lt;!&ndash;collection 一对多使用  property是实体里的员工集合名称&ndash;&gt;-->
+        <!--<collection property="empList" ofType="emp">-->
+            <!--<id column="empno" property="empNo"></id>-->
+            <!--<result column="sal" property="salary"></result>-->
+            <!--<result column="comm" property="comm"></result>-->
+            <!--<result column="job" property="job"></result>-->
+            <!--<result column="ename" property="ename"></result>-->
+        <!--</collection>-->
+    <!--</resultMap>-->
+</mapper>

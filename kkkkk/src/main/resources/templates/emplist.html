@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/sb/jquery.min.js"></script>
+    <script>
+        $(function () {
+            // alert(111);
+            $.ajax({
+                url : "/sb/emp/list",
+                type : "POST",
+                dataType : "json",
+                success : function(data) {
+                    // alert("修改成功!");
+                    if(data!=''){
+                        var str="";
+                        for (var i=0;i<data.length;i++){
+                            str+="" +
+                                "<tr>" +
+                                "<td  class='empNo'>"+data[i].empNo+"</td>" +
+                                "<td>"+data[i].ename+"</td>" +
+                                "<td>"+data[i].job+"</td>" +
+                                "<td>"+data[i].salary+"</td>" +
+                                "<td>"+data[i].mgrName+"</td>" +
+                                "<td>"+data[i].hireDate+"</td>" +
+                                "<td>"+data[i].comm+"</td>" +
+                                "<td>"+data[i].deptName+"</td>" +
+                                // "<td><a href='/sb/emp/delete?empNo="+data[i].empNo+"'>删除</a></td>" +
+
+                                "<td><input  type='button' class='del' value='删除'/></td>" +
+                                "<td><input  type='button' class='updateById' value='更新'/></td>" +
+                                "</tr>";
+                        }
+                        $("#tby").append(str);
+                    }
+                    // location.href = "/user/showAllUser";
+                }
+            });
+
+            $('#tb1').on('click','.del',function () {
+
+                var empNo= $(this).parent().siblings(".empNo").text();
+                alert(empNo);
+                $.ajax({
+                    url: "/sb/emp/delete",
+                    type: "POST",
+                    data:
+                        {'empNo':empNo}
+                    ,
+                    success: function (data) {
+
+                        if (data > 0) {
+                            location.href = "/sb/emplist.html";
+                        }
+
+                    }
+
+
+                })
+
+            })
+
+            $('#tb1').on('click','.updateById',function () {
+                var empNo= $(this).parent().siblings(".empNo").text();
+                location.href = "/sb/update.html?empno="+empNo;
+
+
+            })
+
+
+        })
+
+
+
+    </script>
+</head>
+
+
+<body>
+    <div align="content"><a href="/sb/emp/toadd">添加</a></div>
+    <table id="tb1" border="1">
+
+        <thead>
+            <tr>
+                <td>雇员编号：</td>
+                <td>雇员姓名：</td>
+                <td>职位：</td>
+
+                <td>工资：</td>
+                <td>领导姓名：</td>
+                <td>入职日期：</td>
+
+                <td>奖金：</td>
+                <td>部门名称：</td>
+                <td colspan="2">操作：</td>
+
+            </tr>
+        </thead>
+        <tbody id="tby">
+
+        </tbody>
+    </table>
+</body>
+
+</html>

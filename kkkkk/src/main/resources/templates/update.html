@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery.min.js"></script>
+    <script>
+        $(function () {
+            /* 用途: 接收地直栏参数 取id=1 根据ID的值 */
+            var urlinfo=window.location.href; //获取当前页面的url
+            var  len=urlinfo.length;//获取url的长度
+            var offset=urlinfo.indexOf("?");//设置参数字符串开始的位置
+            var newsidinfo=urlinfo.substr(offset,len);//取出参数字符串 这里会获得类似“id=1”这样的字符串
+            var newsids=newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+            var newsid=newsids[1];//得到参数值
+            var newsname=newsids[0];//得到参数名字
+            $("#empNo").val(newsid);
+
+            $.ajax({
+                url: "/sb/emp/getById",
+                type: "POST",
+                dataType : "json",
+                data:
+                    {'empNo':newsid}
+                ,
+                success: function (data) {
+
+                    if (data != '') {
+
+                        $('#empNo').val(data[0].EMPNO);
+                        $('#job').val(data[0].JOB);
+                        $('#salary').val(data[0].SAL);
+                        $('#ename').val(data[0].ENAME)
+                        $('#mgr').val(data[0].MGR);
+                        $('#hireDate').val(data[0].HIREDATE);
+                        $('#comm').val(data[0].COMM);
+                        $('#deptNo').val(data[0].DEPTNO);
+
+                    }
+                  }
+                })
+
+            $('#tb1').on('click','#sub',function () {
+
+                var arr = {"empNo": $('#empNo').val(),"ename":$('#ename').val(),
+                    "job":$('#job').val(),"salary":$('#salary').val(),
+                    "mgr":$('#mgr').val(),"hireDate":$('#hireDate').val(),
+                    "comm":$('#comm').val(),"deptNo":$('#deptNo').val()};
+
+
+
+                $.ajax({
+                    url: "/sb/emp/update",
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data:
+                        JSON.stringify(arr)
+                    ,
+                    success:function (data) {
+
+                        if(data>0){
+                            location.href = "/sb/emp/toList";
+                        }
+
+                    }
+
+
+                })
+
+
+
+            })
+
+
+        })
+    </script>
+</head>
+<body>
+
+    <table id="tb1" border="1">
+
+            <tr>
+                <td>ID：</td>
+                <td>职位：</td>
+                <td>工资：</td>
+                <td>姓名：</td>
+                <td>MGR：</td>
+                <td>入职日期：</td>
+                <td>奖金：</td>
+                <td>部门ID：</td>
+            </tr>
+
+
+            <tr>
+
+                <td><input type="text" id="empNo" name="empNo" value=""></td>
+
+                <td><input type="text" id="job" name="job" value=""></td>
+                <td><input type="text" id="salary" name="sal" value=""></td>
+                <td><input type="text" id="ename" name="ename" value=""></td>
+                <td><input type="text" id="mgr" name="mgr" value=""></td>
+                <td><input type="text" id="hireDate" name="hiredate" value=""></td>
+                <td><input type="text" id="comm" name="comm" value=""></td>
+                <td><input type="text" id="deptNo" name="deptNo" value=""></td>
+
+            </tr>
+
+            <td><input type="button" id="sub" value="更新"/></td>
+
+    </table>
+
+</body>
+</html>

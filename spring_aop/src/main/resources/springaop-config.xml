@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--把用到的业务交给spring 管理-->
+    <bean name="deptService" class="com.aaa.aop.service.DeptServiceImp"/>
+
+    <bean name="userService" class="com.aaa.aop.service.UserServiceImp"></bean>
+    <bean name="logUntil" class="com.aaa.aop.until.LogUntil"></bean>
+    <!---->
+    <!--aop配置-->
+    <aop:config>
+        <!--切入点配置 切入点表达式 void代表返回值 *代表所以的方法 ..0个或者多个-->
+
+        <aop:pointcut id="pointa" expression="execution(void *(..))"></aop:pointcut>
+        <!--切面配置-->
+        <aop:aspect ref="logUntil">
+            <!--后置通知-->
+            <!--<aop:after-returning method="saveLog" pointcut-ref="pointa"></aop:after-returning>-->
+            <!--前置通知-->
+            <!--<aop:before method="before" pointcut-ref="pointa"></aop:before>-->
+            <!--异常通知-->
+            <!--<aop:after-throwing method="exception" pointcut-ref="pointa" throwing="ex"></aop:after-throwing>-->
+           <!--最终通知-->
+            <!--<aop:after method="fianll" pointcut-ref="pointa" ></aop:after>-->
+            <!--环绕通知-->
+            <aop:around method="around" pointcut-ref="pointa"></aop:around>
+        </aop:aspect>
+
+    </aop:config>
+</beans>
