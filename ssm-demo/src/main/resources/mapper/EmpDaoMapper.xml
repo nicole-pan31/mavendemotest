@@ -17,7 +17,7 @@
 
     <insert id="insert">
         <!--mybiatis添加返回主键ID-->
-        <selectKey keyProperty="empNo" order="BEFORE" resultType="map">
+        <selectKey keyProperty='empNo' order="BEFORE" resultType="int">
             select seq_emp_id.NEXTVAL from dual
         </selectKey>
         insert into emp values (#{empNo},#{ename},#{job},#{mgr},to_date(#{hiredate},'yyyy-mm-dd'),#{sal},#{comm},#{deptNo})

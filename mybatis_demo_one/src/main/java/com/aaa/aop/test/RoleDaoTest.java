@@ -1,6 +1,6 @@
 package com.aaa.aop.test;
 
-
+import com.aaa.mybatis.Dao.NewsDao;
 import com.aaa.mybatis.Dao.RoleDao;
 import com.aaa.mybatis.entity.Power;
 import com.aaa.mybatis.entity.Role;
@@ -15,6 +15,7 @@ public class RoleDaoTest {
     @Test
     public void manyTomany() {
 
+        System.out.println("测试2");
         SqlSession sqlSession =null;
         sqlSession = SqlSessionFactoryUntil.createSqlSession();
         RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
