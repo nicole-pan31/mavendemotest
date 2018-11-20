@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class RoleDaoTest {
     @Test
     public void manyTomany() {
-        System.out.println("测试");
+        System.out.println("测试2");
         SqlSession sqlSession =null;
         sqlSession = SqlSessionFactoryUntil.createSqlSession();
         RoleDao roleDao = sqlSession.getMapper(RoleDao.class);
