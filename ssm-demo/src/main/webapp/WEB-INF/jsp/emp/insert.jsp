@@ -18,7 +18,7 @@
 
             <table>
                 <tr>
-                    <td>ID：</td>
+                    <td hidden="hidden">ID：</td>
                     <td>职位：</td>
                     <td>工资：</td>
                     <td>姓名：</td>
@@ -30,7 +30,7 @@
 
 
                     <tr>
-                        <td><input type="text" name="empNo" value=""></td>
+                        <td hidden="hidden"><input type="text" name="empNo" value=""></td>
 
                         <td><input type="text" name="job" value=""></td>
                         <td><input type="text" name="sal" value=""></td>
